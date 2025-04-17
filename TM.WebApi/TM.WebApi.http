@@ -1,0 +1,6 @@
+@TM.WebApi_HostAddress = http://localhost:5030
+
+GET {{TM.WebApi_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
