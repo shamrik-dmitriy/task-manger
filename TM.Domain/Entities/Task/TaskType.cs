@@ -1,4 +1,4 @@
-﻿namespace TM.Domain;
+﻿namespace TM.Domain.Entities;
 
 public class TaskType
 {

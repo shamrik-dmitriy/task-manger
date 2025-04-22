@@ -1,4 +1,4 @@
-﻿using TM.Application.DTO;
+﻿using TM.Contracts.DTOs.Task;
 
 namespace TM.Application.Interfaces;
 

@@ -1,8 +1,7 @@
-﻿namespace TM.Domain;
+﻿namespace TM.Domain.Entities;
 
-public class Task
+public class Task : BaseEntity
 {
-    public Guid Id { get; set; }
     public string Title { get; set; }
     public string Description { get; set; }
     public DateTime StartDate { get; set; }

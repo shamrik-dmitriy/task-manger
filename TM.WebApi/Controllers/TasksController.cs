@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using TM.Application.DTO;
 using TM.Application.Interfaces;
+using TM.Contracts.DTOs.Task;
 
 namespace TM.WebApi.Controllers;
 
@@ -47,8 +47,6 @@ public class TasksController : ControllerBase
     {
         var tasks = await _taskService.GetAsync(id);
         return Ok(new List<TaskDto>());
-        var result = new TaskDto();
-        return Ok(result);
     }
 
     /// <summary>

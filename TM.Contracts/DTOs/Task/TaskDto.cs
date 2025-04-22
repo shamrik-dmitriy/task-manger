@@ -1,4 +1,4 @@
-﻿namespace TM.Application.DTO;
+﻿namespace TM.Contracts.DTOs.Task;
 
 public class TaskDto
 {
@@ -7,9 +7,11 @@ public class TaskDto
     public string Description { get; set; }
     public DateTime StartDate { get; set; }
     public DateTime EndDate { get; set; }
+
     public TaskStatus Status { get; set; }
+
     //public TaskType Type { get; set; }
     public Guid UserId { get; set; }
     public Guid ProjectId { get; set; }
-    public Guid TaskTypeId { get; set; }  
+    public Guid TaskTypeId { get; set; }
 }
