@@ -1,9 +1,10 @@
-﻿namespace TM.Domain.Entities;
+﻿using System;
 
-public class BaseEntity
+namespace TM.Domain.Entities;
+
+public abstract class BaseEntity
 {
     public Guid Id { get; set; }
-
     public DateTime CreatedAt { get; set; }
     public DateTime UpdatedAt { get; set; }
 }
