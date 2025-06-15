@@ -1,4 +1,6 @@
-﻿namespace TM.Contracts.DTOs.Task;
+﻿using TaskStatus = TM.Domain.Entities.Task.TaskStatus;
+
+namespace TM.Contracts.DTOs.Task;
 
 public class TaskDto
 {
