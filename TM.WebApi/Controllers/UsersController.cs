@@ -3,18 +3,14 @@ using TM.Domain.Entities.User;
 
 namespace TM.WebApi.Controllers;
 
+[ApiController]
 [Route("api/v1/[controller]")]
 public class UsersController : ControllerBase
 {
     public UsersController()
     {
     }
-
-    public async Task<IActionResult> Create()
-    {
-        return Ok();
-    }
-
+    
     /// <summary>
     /// Получить пользователя
     /// </summary>

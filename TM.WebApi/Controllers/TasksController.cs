@@ -4,6 +4,7 @@ using TM.Contracts.DTOs.Task;
 
 namespace TM.WebApi.Controllers;
 
+[ApiController]
 [Route("api/v1/[controller]")]
 public class TasksController : ControllerBase
 {
