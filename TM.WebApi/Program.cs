@@ -1,7 +1,11 @@
 using System.Reflection;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using TM.Abstractions;
 using TM.Application.Interfaces;
 using TM.Application.Interfaces.Infrastructure;
@@ -10,7 +14,6 @@ using TM.Application.Services;
 using TM.Infrastructure;
 using TM.Persistance;
 using TM.Repositories;
-using TM.WebApi;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -34,7 +37,7 @@ using (var scope = app.Services.CreateScope())
 
 app.UseHttpsRedirection();
 app.MapControllers();
-
+app.UseMiddleware<ExceptionHandlingMiddleware>();
 app.Run();
 
 void AddServices(IServiceCollection builderServices)
