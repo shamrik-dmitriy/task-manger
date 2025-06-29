@@ -13,5 +13,8 @@ public interface IUserRepository
     public Task<User?> GetUser(User user);
 
     public Task<IEnumerable<User>> GetAllAsync();
+    
     public Task<User?> GetUserByEmail(string userEmail);
+    
+    public Task<User?> GetUserById(Guid id);
 }

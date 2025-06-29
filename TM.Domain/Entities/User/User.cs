@@ -32,4 +32,5 @@ public class User : BaseEntity
     }
     
     public bool Deactivate() => IsActive = false;
+    public bool Activate() => IsActive = true;
 }

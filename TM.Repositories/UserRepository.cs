@@ -37,7 +37,7 @@ public class UserRepository : IUserRepository
         var findUser = await _context.Users.FindAsync(user);
         return findUser;
     }
-    
+
     public async Task<IEnumerable<User>> GetAllAsync()
     {
         var users = await _context.Users.AsNoTracking().ToListAsync();
@@ -46,7 +46,13 @@ public class UserRepository : IUserRepository
 
     public async Task<User?> GetUserByEmail(string email)
     {
-        var findUser = await _context.Users.FirstOrDefaultAsync(x=>x.Email == email);
+        var findUser = await _context.Users.FirstOrDefaultAsync(x => x.Email == email);
+        return findUser;
+    }
+
+    public async Task<User?> GetUserById(Guid id)
+    {
+        var findUser = await _context.Users.FirstOrDefaultAsync(x => x.Id == id);
         return findUser;
     }
 }
