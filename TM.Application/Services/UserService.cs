@@ -1,6 +1,7 @@
 ﻿using System.Security.Cryptography;
 using System.Text;
 using TM.Abstractions;
+using TM.Application.Exceptions;
 using TM.Application.Interfaces;
 using TM.Application.Interfaces.Infrastructure;
 using TM.Contracts.DTOs.User;
@@ -44,8 +45,8 @@ public class UserService : IUserService
 
         var user = await _userRepository.GetUserByEmail(createUserDto.Email);
         if (user is not null)
-            return new UserDto { Id = user.Id, Name = user.Name, Email = user.Email };
-        
+            throw new ConflictException("User already exists");
+
         var newUser = new User(createUserDto.Name, createUserDto.Email, password, salt);
         
         await _userRepository.AddAsync(newUser);
