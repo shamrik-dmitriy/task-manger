@@ -24,6 +24,12 @@ public class ExceptionHandlingMiddleware
         {
             await _next(context);
         }
+        catch (NotFoundException conflictException)
+        {
+            _logger.LogWarning(exception: conflictException, conflictException.Message);
+            context.Response.StatusCode = (int)HttpStatusCode.NotFound;
+            await context.Response.WriteAsJsonAsync(new { conflictException.Message });
+        }
         catch (ConflictException conflictException)
         {
             _logger.LogWarning(exception: conflictException, conflictException.Message);
