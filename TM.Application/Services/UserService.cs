@@ -2,6 +2,7 @@
 using System.Text;
 using TM.Abstractions;
 using TM.Application.Interfaces;
+using TM.Application.Interfaces.Infrastructure;
 using TM.Contracts.DTOs.User;
 using TM.Domain.Entities.User;
 
@@ -9,10 +10,14 @@ namespace TM.Application.Services;
 
 public class UserService : IUserService
 {
+    private readonly IPasswordHasher _passwordHasher;
     private readonly IUserRepository _userRepository;
 
-    public UserService(IUserRepository userRepository)
+    public UserService(
+        IPasswordHasher passwordHasher,
+        IUserRepository userRepository)
     {
+        _passwordHasher = passwordHasher;
         _userRepository = userRepository;
     }
 
@@ -34,8 +39,8 @@ public class UserService : IUserService
 
     public async Task<UserDto> CreateUserAsync(CreateUserDto createUserDto)
     {
-        var salt = GenerateSalt();
-        var password = HashPassword(createUserDto.Password, salt);
+        var salt = _passwordHasher.GenerateSalt();
+        var password = _passwordHasher.HashPassword(createUserDto.Password, salt);
 
         var user = await _userRepository.GetUserByEmail(createUserDto.Email);
         if (user is not null)
@@ -45,20 +50,5 @@ public class UserService : IUserService
         
         await _userRepository.AddAsync(newUser);
         return new UserDto { Id = newUser.Id, Name = newUser.Name, Email = newUser.Email };
-    }
-
-    private byte[] GenerateSalt()
-    {
-        var salt = new byte[32];
-        using var rnd = RandomNumberGenerator.Create();
-        rnd.GetBytes(salt);
-        return salt;
-    }
-
-    private byte[] HashPassword(string password, byte[] salt)
-    {
-        using var sha256 = SHA256.Create();
-        var combined = Encoding.UTF8.GetBytes(password).Concat(salt).ToArray();
-        return sha256.ComputeHash(combined);
     }
 }
