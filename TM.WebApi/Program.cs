@@ -4,7 +4,10 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using TM.Abstractions;
 using TM.Application.Interfaces;
+using TM.Application.Interfaces.Infrastructure;
+using TM.Application.Middlewares;
 using TM.Application.Services;
+using TM.Infrastructure;
 using TM.Persistance;
 using TM.Repositories;
 using TM.WebApi;
@@ -44,6 +47,7 @@ void AddServices(IServiceCollection builderServices)
         .AddEndpointsApiExplorer()
         .AddScoped<IUserRepository, UserRepository>()
         .AddScoped<ITaskRepository, TaskRepository>()
+        .AddScoped<IPasswordHasher, PasswordHasher>()
         .AddScoped<IUserService, UserService>()
         .AddValidatorsFromAssembly(Assembly.GetExecutingAssembly())
         .AddFluentValidationAutoValidation()
