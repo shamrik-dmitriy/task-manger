@@ -1,4 +1,7 @@
-﻿using TM.Contracts.DTOs.User;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
+using TM.Contracts.DTOs.User;
 
 namespace TM.Application.Interfaces;
 

@@ -1,4 +1,6 @@
-﻿using TM.Contracts.DTOs.Task;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
+using TM.Contracts.DTOs.Task;
 
 namespace TM.Application.Interfaces;
 
